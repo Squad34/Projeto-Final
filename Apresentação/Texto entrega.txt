@@ -1,0 +1,39 @@
+Squad 34
+
+Nome do líder: Daniel de Abreu Lessi
+Nome do vice-líder: Luciano Aparecido do Nascimento França Junior
+Demais Integrantes:
+Gabriel da Silva Santos
+
+1. Qual foi o desafio escolhido?
+DESAFIO 1 - Falta de acesso a equipamentos e internet 
+
+2. Considerando o desafio escolhido, qual é o problema a ser resolvido e que será contemplado com o projeto final?
+Falta de acesso a equipamentos.
+
+3. Qual o público-alvo? A solução poderá ser aplicada a todos, sem restrição de idade ou grau de escolaridade, por exemplo?
+Estudantes do Ensino Médio, Profissionalizante e pessoas com mais de 40 anos procurando requalificação para ingressar ao mercado de trabalho.
+
+4. O problema foi escolhido com base em quais dados oficiais? Como vocês identificaram que esse realmente é um problema para o público-alvo? Indique as referências usadas, justificando a sua escolha.
+ 
+O 2ª EDIÇÃO RELATÓRIO NACIONAL CONJUVE - MAIO DE 2021
+Mostrou como na pandemia de COVID-19 a desigualdade no acesso à educação e oportunidades foi acentuada  para as pessoas em situação de vulnerabilidade socioeconômica que, não sendo combatidas, se aprofundem cada vez mais.
+A educação é uma das principais  estratégias para redução de desigualdades, e a pandemia trouxe a falta de acesso às ferramentas como um componente que aprofunda a desigualdade e o acesso à educação. Criar um instrumento facilitador e viabilizador das pessoas à estas ferramentas buscando reduzir o abismo estimulou o grupo a aderir este tema.
+
+5. Como esse problema afeta o público-alvo?
+
+Várias pesquisas demonstraram o impacto da pandemia na educação das crianças e jovens brasileiros, o Pnad identificou uma evasão escolar na ordem de 170% dessa população e a Educação para Todos identificou que 48% afirmam que a falta de acesso a equipamentos como motivo para a evasão. O Pnad estima que, em agosto de 2020, quatro milhões de estudantes do ensino fundamental, estavam sem acesso a nenhuma atividade escolar. 
+
+6. Qual o cronograma das atividades?
+Nos reunimos às terças e quintas após a monitoria para alinhar, tirar duvidas e planejar o que iremos fazer e, aos domingos, finalizávamos o ciclo.
+
+7. Como será feita a distribuição das atividades entre os integrantes do squad para essa primeira entrega?
+As tarefas eram distribuídas de maneira orgânica, respeitando as habilidades e disponibilidade dos integrantes que se propuseram à executar o projeto.
+
+8. Qual a ferramenta de gerenciamento de projeto será usada para o monitoramento das atividades?  Ex: Trello, Asana, Jira, Monday
+Canva
+WhatsApp
+GitHub
+Trello
+Teams
+Discord
