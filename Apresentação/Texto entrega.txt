@@ -30,6 +30,36 @@ Nos reunimos às terças e quintas após a monitoria para alinhar, tirar duvidas
 7. Como será feita a distribuição das atividades entre os integrantes do squad para essa primeira entrega?
 As tarefas eram distribuídas de maneira orgânica, respeitando as habilidades e disponibilidade dos integrantes que se propuseram à executar o projeto.
 
+Ideação
+Gabriel da Silva Santos
+Luciano França
+Daniel de Abreu Lessi
+
+Design
+Luciano França
+Gabriel da Silva Santos
+Daniel de Abreu Lessi
+
+Conteúdo Site
+Luciano França
+Daniel de Abreu Lessi
+
+Front-End 
+Luciano França
+Daniel de Abreu Lessi
+
+Versionamento Github
+Daniel de Abreu Lessi
+Luciano França
+
+Banco de dados
+Daniel de Abreu Lessi
+Luciano França
+
+Apresentação
+Daniel de Abreu Lessi
+Luciano França
+
 8. Qual a ferramenta de gerenciamento de projeto será usada para o monitoramento das atividades?  Ex: Trello, Asana, Jira, Monday
 Canva
 WhatsApp
