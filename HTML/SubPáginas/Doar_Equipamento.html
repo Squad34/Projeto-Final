@@ -82,9 +82,25 @@
                 <div class="mb-3">
                     <label for="localColeta" class="form-label">Local para Coleta:</label>
                     <div class="mb-3">
+                        <!--CEP-->
                         <label for="CEP" class="form-label">CEP:</label>
                         <div class="m-1"><input type="text" id="localPartida" class="form-control" required
                                 placeholder="00000-000"></div>
+                        <!--Estado-->
+                        <label for="estado" class="form-label">Estado:</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Escolha um Estado:</option>
+                            <option value="1">São Paulo</option>
+                        </select>
+                        <!--Cidade-->
+                        <div class="mb-3">
+                            <label for="cidade" class="form-label">Cidade:</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Escolha sua Cidade:</option>
+                                <option value="1">São Paulo</option>
+                            </select>
+                        </div>
+                        <!--Endereço-->
                         <div class="mb-3 col-12">
                             <label for="endereco" class="form-label">Endereço</label>
                             <input type="text" class="form-control" id="endereco" placeholder="Rua, Bairro" required>
@@ -98,20 +114,6 @@
                             <input type="text" class="form-control" id="complemento"
                                 placeholder="Apartamento ou Numero da Casa">
                         </div>
-                        <!--Cidade-->
-                        <div class="mb-3">
-                            <label for="cidade" class="form-label">Cidade:</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Escolha sua Cidade:</option>
-                                <option value="1">São Paulo</option>
-                            </select>
-                        </div>
-                        <!--Estado-->
-                        <label for="estado" class="form-label">Estado:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Escolha um Estado:</option>
-                            <option value="1">São Paulo</option>
-                        </select>
                     </div>
                     <!--Comentário-->
                     <div class="mb-3 m-1">
