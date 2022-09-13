@@ -3,6 +3,7 @@ import java.util.Date;
 public class Doacao {
 
 	private int id;
+	private int id_Usuario;
 	private int tipoEquipamento;
 	private int estadoEquipamento;
 	private boolean tipoColeta;
@@ -12,6 +13,10 @@ public class Doacao {
 	private String cidadeColeta;
 	private String enderecoColeta;
 	private String complemento;
+	
+	private boolean equipamentoDisponivel;
+	private boolean equipamentoDoado;
+	
 	private String comentario;
 
 	public int getId() {
@@ -21,7 +26,15 @@ public class Doacao {
 	public void setId(int _id) {
 		this.id = _id;
 	}
+	
+	public int getIdUsuario() {
+		return id_Usuario;
+	}
 
+	public void setIdUsuario(int _id_Usuario) {
+		this.id_Usuario = _id_Usuario;
+	}
+	
 	public int getTipoEquipamento() {
 		return tipoEquipamento;
 	}
@@ -94,12 +107,25 @@ public class Doacao {
 		this.complemento = _complemento;
 	}
 
-	public String geComentario() {
-		return comentario;
+	public boolean getEquipamentoDisponivel() {
+		return equipamentoDisponivel;
 	}
 
+	public void setEquipamentoDisponivel(boolean _equipamentoDisponivel) {
+		this.equipamentoDisponivel = _equipamentoDisponivel;
+	}
+	
+	public boolean getEquipamentoDoado() {
+		return equipamentoDoado;
+	}
+
+	public void setEquipamentoDoado(boolean _equipamentoDoado) {
+		this.equipamentoDoado = _equipamentoDoado;
+	}
+	public String getComentario() {
+		return comentario;
+	}
 	public void setComentario(String _comentario) {
 		this.comentario = _comentario;
 	}
-
 }
