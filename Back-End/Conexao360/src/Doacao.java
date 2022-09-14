@@ -13,10 +13,8 @@ public class Doacao {
 	private String cidadeColeta;
 	private String enderecoColeta;
 	private String complemento;
-	
 	private boolean equipamentoDisponivel;
 	private boolean equipamentoDoado;
-	
 	private String comentario;
 
 	public int getId() {
