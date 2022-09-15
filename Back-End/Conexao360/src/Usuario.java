@@ -2,7 +2,6 @@ import java.util.Date;
 public class Usuario {
 	private int id;
 	private String nome;
-	private String sexo;
 	private String rg;
 	private String cpf;
 	private Date dataNasc;
@@ -13,7 +12,7 @@ public class Usuario {
 	private String cep;
 	private String endereco;
 	private String complemento;
-	private boolean masterUser;
+	private boolean administrador;
 	
 
 	public int getId() {
@@ -28,13 +27,6 @@ public class Usuario {
 	}
 	public void setNome(String _nome) {
 		this.nome = _nome;
-	}
-	
-	public String getSexo() {
-		return sexo;
-	}
-	public void setSexo(String _sexo) {
-		this.sexo = _sexo;
 	}
 	
 	public String getRG() {
@@ -107,10 +99,10 @@ public class Usuario {
 		this.complemento = _complemento;
 	}
 	
-	public boolean getMasterUser() {
-		return masterUser;
+	public boolean getAdministrador() {
+		return administrador;
 	}
-	public void setMasterUser(boolean _masterUser) {
-		this.masterUser = _masterUser;
+	public void setMasterUser(boolean _administrador) {
+		this.administrador = _administrador;
 	}
 }

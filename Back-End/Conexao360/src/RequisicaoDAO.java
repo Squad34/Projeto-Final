@@ -13,7 +13,7 @@ public class RequisicaoDAO {
 	public void saveRequisicao(Requisicao _requisicao) {
 		// Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
 		// de dados
-		String sql = "INSERT INTO requisicao_equipameto(ID_Usuario, Necessidade, Tipo_Equipamento, Possui_Equipamento, Divide_Equipamento, Renda_Familiar, Tipo_Entrega, DataEntrega, CEP_Entrega, Estado_Entrega, Cidade_Entrega, Endereco_Entrega, Complemento, Comentario)"+
+		String sql = "INSERT INTO requisicao_equipamento(ID_Usuario, Necessidade, Tipo_Equipamento, Possui_Equipamento, Divide_Equipamento, Renda_Familiar, Tipo_Entrega, DataEntrega, CEP_Entrega, Estado_Entrega, Cidade_Entrega, Endereco_Entrega, Complemento, Comentario)"+
 	        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	        try {
 	            // Cria uma conexão com o banco
@@ -132,8 +132,8 @@ public class RequisicaoDAO {
 		}
 	}
 
-	public List<Requisicao> getRequisicao() {
-		String sql = "SELECT * FROM doacao";
+	public List<Requisicao> getRequisicao(int _id) {
+		String sql = "SELECT * FROM requisicao_equipamento\r\n" + "WHERE ID_Usuario LIKE '" + _id + "';";
 		List<Requisicao> requisicoes = new ArrayList<Requisicao>();
 		ResultSet rset = null;
 		try {
