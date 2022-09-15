@@ -8,7 +8,7 @@ public class Requisicao {
 	private int tipoEquipamento;
 	private boolean possuiEquipamento;
 	private boolean divideEquipamento;
-	private boolean rendaFamiliar;
+	private int rendaFamiliar;
 	private boolean tipoEntrega;
 	private Date dataEntrega;
 	private String CEPEntrega;
@@ -66,11 +66,11 @@ public class Requisicao {
 		this.divideEquipamento = _divideEquipamento;
 	}
 
-	public boolean getRendaFamiliar() {
+	public int getRendaFamiliar() {
 		return rendaFamiliar;
 	}
 
-	public void setRendaFamiliar(boolean _rendaFamiliar) {
+	public void setRendaFamiliar(int _rendaFamiliar) {
 		this.rendaFamiliar = _rendaFamiliar;
 	}
 

@@ -27,7 +27,7 @@ public class RequisicaoDAO {
 			pstm.setInt(4, _requisicao.getTipoEquipamento());
 			pstm.setBoolean(5, _requisicao.getPossuiEquipamento());
 			pstm.setBoolean(6, _requisicao.getDivideEquipamento());
-			pstm.setBoolean(7, _requisicao.getRendaFamiliar());
+			pstm.setInt(7, _requisicao.getRendaFamiliar());
 			pstm.setBoolean(8, _requisicao.getTipoEntrega());
 			pstm.setDate(9, new Date(_requisicao.getDataEntrega().getTime()));
 			pstm.setString(10, _requisicao.getCEPEntrega());
@@ -95,7 +95,7 @@ public class RequisicaoDAO {
 			pstm.setInt(4, _requisicao.getTipoEquipamento());
 			pstm.setBoolean(5, _requisicao.getPossuiEquipamento());
 			pstm.setBoolean(6, _requisicao.getDivideEquipamento());
-			pstm.setBoolean(7, _requisicao.getRendaFamiliar());
+			pstm.setInt(7, _requisicao.getRendaFamiliar());
 			pstm.setBoolean(8, _requisicao.getTipoEntrega());
 			pstm.setDate(9, new Date(_requisicao.getDataEntrega().getTime()));
 			pstm.setString(10, _requisicao.getCEPEntrega());
@@ -142,7 +142,7 @@ public class RequisicaoDAO {
 				_requisicao.setTipoEquipamento(rset.getInt("Tipo_Equipamento"));
 				_requisicao.setPossuiEquipamento(rset.getBoolean("Possui_Equipamento"));
 				_requisicao.setDivideEquipamento(rset.getBoolean("Divide_Equipamento"));
-				_requisicao.setRendaFamiliar(rset.getBoolean("Renda_Familiar"));
+				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
 				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
 				_requisicao.setCEPEntrega(rset.getString("CEP_Entrega"));
@@ -190,7 +190,7 @@ public class RequisicaoDAO {
 				_requisicao.setTipoEquipamento(rset.getInt("Tipo_Equipamento"));
 				_requisicao.setPossuiEquipamento(rset.getBoolean("Possui_Equipamento"));
 				_requisicao.setDivideEquipamento(rset.getBoolean("Divide_Equipamento"));
-				_requisicao.setRendaFamiliar(rset.getBoolean("Renda_Familiar"));
+				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
 				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
 				_requisicao.setCEPEntrega(rset.getString("CEP_Entrega"));
