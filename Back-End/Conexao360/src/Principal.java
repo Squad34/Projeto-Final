@@ -176,7 +176,7 @@ public class Principal {
 	
 	public static void FazerRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input){
 		Requisicao requisicao = CriarRequisicao(_requisicaoDAO, _input);
-		_requisicaoDAO.adicionarRequisicao(requisicao);
+		_requisicaoDAO.saveRequisicao(requisicao);
 	}
 	public static Requisicao CriarRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input) {
 		boolean validacao = false;
@@ -208,7 +208,7 @@ public class Principal {
 		requisicao.setDivideEquipamento(_input.nextBoolean());
 		
 		System.out.println("Qual a Renda Familiar?");
-		requisicao.setRendaFamiliar(_input.nextFloat());
+		requisicao.setRendaFamiliar(_input.nextInt());
 		
 		System.out.println("Necessita que retire o equipamento em casa(S/N)?");
 		necessitaRetirada = _input.nextBoolean();
