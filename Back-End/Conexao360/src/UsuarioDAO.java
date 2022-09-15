@@ -11,8 +11,8 @@ public class UsuarioDAO {
     public void saveUsuario(Usuario usuario) { 
         // Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
         // de dados   
-        String sql = "INSERT INTO usuario(Nome, Sexo, RG, CPF, Data_Nascimento, Email, Senha, Telefone, Estado, CEP, Endereco, Complemento)"+
-        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario(Nome, Sexo, RG, CPF, Data_Nascimento, Email, Senha, Telefone, Estado, CEP, Endereco, Complemento, MasterUser)"+
+        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             // Cria uma conexão com o banco
             conn = Conexao.createConnectionToMySQL();
@@ -32,6 +32,7 @@ public class UsuarioDAO {
             pstm.setString(10, usuario.getCEP());
             pstm.setString(11, usuario.getEndereco());
             pstm.setString(12, usuario.getComplemento());
+            pstm.setBoolean(13, usuario.getMasterUser());
            
  
             // Executa a sql para inserção dos dados

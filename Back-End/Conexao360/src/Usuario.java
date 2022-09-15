@@ -13,6 +13,7 @@ public class Usuario {
 	private String cep;
 	private String endereco;
 	private String complemento;
+	private boolean masterUser;
 	
 
 	public int getId() {
@@ -104,5 +105,12 @@ public class Usuario {
 	}
 	public void setComplemento(String _complemento) {
 		this.complemento = _complemento;
+	}
+	
+	public boolean getMasterUser() {
+		return masterUser;
+	}
+	public void setMasterUser(boolean _masterUser) {
+		this.masterUser = _masterUser;
 	}
 }

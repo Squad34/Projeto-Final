@@ -2,12 +2,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.text.MaskFormatter;
 public class Principal {
 
 	public static void main(String[] args) {
 //		Conexão com o Banco de Dados
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario usuarioLogado = new Usuario();
 		boolean logado = false;
 		boolean master = false;
 		//DestinoDAO destinoDAO = new DestinoDAO();
@@ -17,7 +21,7 @@ public class Principal {
 		do {
 			PrintMenuPrincipal();
 			
-			menuPrincipal = input.nextInt();
+			menuPrincipal = input.nextInt();	
 
 			switch(menuPrincipal) {
 			case 1:
@@ -26,8 +30,12 @@ public class Principal {
 			case 2:
 				Login(usuarioDAO, input, logado, master);
 				if(logado) {
-					MenuCliente(usuarioDAO, input, logado, master);
+					MenuUsuario(usuarioDAO, input, logado, master);
 				}
+				break;
+				
+			case 3:
+				MenuUsuario(usuarioDAO, input, logado, master);
 				break;
 			case 0:
 				System.out.println("Até breve.");
@@ -38,17 +46,21 @@ public class Principal {
 		}while(menuPrincipal != 0);
 		input.close();
 	}
-	
+	//-------------------------------------------------
+	//Menus
+	//-------------------------------------------------
 	public static void PrintMenuPrincipal() {
 		System.out.println("------------------------------------------------");
 		System.out.println("|                  Conexão 360                 |");
 		System.out.println("------------------------------------------------");
 		System.out.println("1 - Cadastrar Usuário");
 		System.out.println("2 - Login");
+		System.out.println("3 - Menu Usuario");
 		System.out.println("0 - Sair");
 	}
 	
-	public static void MenuCliente(UsuarioDAO _usuarioDAO, Scanner _input, boolean _logado, boolean _master) {
+	public static void MenuUsuario(UsuarioDAO _usuarioDAO, Scanner _input, boolean _logado, boolean _master) {
+		RequisicaoDAO requisicaoDAO = new RequisicaoDAO();
 		int menuInterno = 9;
 		do {
 			System.out.println("------------------------------------------------");
@@ -74,7 +86,7 @@ public class Principal {
 				ExcluirUsuario(_usuarioDAO, _input);
 				break;
 			case 3:
-				BuscarUsuario(_usuarioDAO);
+				FazerRequisicao(requisicaoDAO, _input);
 				break;
 			case 4:
 				BuscarUsuarioNome(_usuarioDAO, _input);			
@@ -91,45 +103,25 @@ public class Principal {
 		}while(menuInterno != 0);
 		
 	}
+	//-------------------------------------------------
+	//Cadastro Usuário
+	//-------------------------------------------------
 
-	//Cliente
 	
 	public static Usuario CriarUsuario(UsuarioDAO _usuarioDAO, Scanner _input) {
 		boolean validacao = false;
 		Usuario usuario = new Usuario();
+		//Cadastra o nome do Usuário, usando a função que permite que o input capture espaço.
 		System.out.println("Digite o nome que deseja cadastrar:");
 		usuario.setNome(CapturarString(_input));
 		
 		System.out.println("Qual seu sexo:");
 		usuario.setSexo(CapturarString(_input));
 		
-		do{
-			System.out.println("Digite o RG:");
-			String RG = _input.next();
-			validacao = VerificarRG(RG, _usuarioDAO);
-			usuario.setRG(RG);
-		}while(!validacao);
-		validacao = false;
-		
-		
-		do{
-			System.out.println("Digite o CPF:");
-			String CPF = _input.next();
-			validacao = VerificarCPF(CPF, _usuarioDAO);
-			usuario.setCPF(CPF);
-		}while(!validacao);
-		validacao = false;
-		
-		System.out.println("Digite a Data de Nascimento(dd/MM/yyyy):");
-		String data = _input.next();
-		Date dataNasc = new Date();
-		try {
-			dataNasc = new SimpleDateFormat("dd/MM/yyyy").parse(data);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		usuario.setDataNascimento(dataNasc);
+		CadastrarRG(usuario, _usuarioDAO, _input);
+		CadastrarCPF(usuario, _usuarioDAO, _input);
+		CadastrarDataNascimento(usuario, _usuarioDAO, _input);
+				
 		
 		do {
 			System.out.println("Digite o email:");
@@ -180,6 +172,70 @@ public class Principal {
 	public static void CadastroUsuario(UsuarioDAO _usuarioDAO, Scanner _input){
 		Usuario usuario = CriarUsuario(_usuarioDAO, _input);
 		_usuarioDAO.saveUsuario(usuario);
+	}
+	
+	public static void FazerRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input){
+		Requisicao requisicao = CriarRequisicao(_requisicaoDAO, _input);
+		_requisicaoDAO.adicionarRequisicao(requisicao);
+	}
+	public static Requisicao CriarRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input) {
+		boolean validacao = false;
+		boolean necessitaRetirada;
+		Requisicao requisicao = new Requisicao();
+		
+		System.out.println("Qual a necessidade do Equipamento?");
+		System.out.println("1-");
+		System.out.println("2-");
+		System.out.println("3-");
+		System.out.println("4-");
+		requisicao.setNecessidade(_input.nextInt());
+		
+		System.out.println("Qual o tipo do Equipamento?");
+		System.out.println("1-");
+		System.out.println("2-");
+		System.out.println("3-");
+		System.out.println("4-");
+		requisicao.setTipoEquipamento(_input.nextInt());
+		
+		System.out.println("Possui Equipamento em casa (S/N)?");
+		System.out.println("1-");
+		System.out.println("2-");
+		requisicao.setPossuiEquipamento(_input.nextBoolean());
+		
+		System.out.println("Divide Equipamento(S/N)?");
+		System.out.println("1-");
+		System.out.println("2-");
+		requisicao.setDivideEquipamento(_input.nextBoolean());
+		
+		System.out.println("Qual a Renda Familiar?");
+		requisicao.setRendaFamiliar(_input.nextFloat());
+		
+		System.out.println("Necessita que retire o equipamento em casa(S/N)?");
+		necessitaRetirada = _input.nextBoolean();
+		requisicao.setDivideEquipamento(necessitaRetirada);
+		
+		
+		String data = "13/09/2022";
+		Date dataEntr = new Date();
+		try {
+			dataEntr = new SimpleDateFormat("dd/MM/yyyy").parse(data);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		requisicao.setDataEntrega(dataEntr);
+		
+		requisicao.setCEPEntrega("00000-000");
+		requisicao.setEstadoEntrega("SP");
+		requisicao.setCidadeEntrega("São Paulo");
+		requisicao.setEnderecoEntrega("Rua Jorge, 99");
+		requisicao.setComplemento("Blabla");
+		requisicao.setComentario("bleble");
+		requisicao.setIdUsuario(1);
+		
+		
+		return requisicao;
 	}
 	
 	public static void BuscarUsuario(UsuarioDAO _usuarioDAO) {
@@ -234,7 +290,7 @@ public class Principal {
 	
 	public static String CapturarString(Scanner inputInterno) {
 		String stringEspaco = inputInterno.nextLine();
-		stringEspaco = inputInterno.nextLine();
+		stringEspaco += inputInterno.next();
 		return stringEspaco;	
 	}
 	public static Boolean VerificarEmail(String _email, UsuarioDAO _usuarioDAO) {
@@ -259,31 +315,143 @@ public class Principal {
        return true;
 	}
 	
-	public static Boolean VerificarCPF(String _CPF, UsuarioDAO _usuarioDAO) {
+	//CPF
+	
+	public static void CadastrarCPF(Usuario _usuario, UsuarioDAO _usuarioDAO, Scanner _input) {
+		boolean validacao = false;
+		do{
+			System.out.println("Digite o CPF:");
+			String CPF = _input.next();
+			validacao = VerificarCPF(CPF, _usuario, _usuarioDAO);
+			if(!validacao) {
+				System.out.println("CPF Inválido");
+			}
+		}while(!validacao);
+		validacao = false;
+	}
+	
+	public static Boolean VerificarCPF(String _CPF, Usuario _usuario, UsuarioDAO _usuarioDAO) {
        if (_CPF == null) {
     	   System.out.println("O CPF não pode ser nulo");
     	   return false;
        }
        
-       if(_usuarioDAO.getUsuarioCPF(_CPF)) {
-    	   System.out.println("O CPF já está cjadastrado");
+       String cleanCPF = _CPF.replaceAll("[^0-9]","");
+       
+       if(cleanCPF.length() < 11) {
     	   return false;
        }
-           
+       
+
+       _CPF = cleanCPF.replaceAll("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+       
+       if(_usuarioDAO.getUsuarioCPF(_CPF)) {
+    	   System.out.println("O CPF já está cadastrado");
+    	   return false;
+       }
+       _usuario.setCPF(_CPF);
        return true;
 	}
 	
-	public static Boolean VerificarRG(String _RG, UsuarioDAO _usuarioDAO) {
+	//Data Nascimento
+	
+	public static void CadastrarDataNascimento(Usuario _usuario, UsuarioDAO _usuarioDAO, Scanner _input) {
+		boolean validacao = false;
+		do{
+			System.out.println("Digite a data de nascimento:");
+			String dataNasc = _input.next();
+			validacao = VerificarDataNascimento(dataNasc, _usuario, _usuarioDAO);
+			if(!validacao) {
+				System.out.println("Data invalida");
+			}
+		}while(!validacao);
+		validacao = false;
+	}
+	
+	public static Boolean VerificarDataNascimento(String _dataNasc, Usuario _usuario,  UsuarioDAO _usuarioDAO) {
+		Date dataNasc = new Date();
+		 if (_dataNasc == null) {
+	    	   System.out.println("O CPF não pode ser nulo");
+	    	   return false;
+	       }
+	       
+	       String DataLimpa = _dataNasc.replaceAll("[^0-9]","");
+	       _dataNasc = DataLimpa.replaceAll("([0-9]{1,2})([0-9]{2})([0-9]{4})", "$1/$2/$3");
+	       System.out.println("Antes: " + _dataNasc);
+	       switch(_dataNasc.length()) {
+	       case 5:
+	    	   _dataNasc = "0" + _dataNasc;
+	       case 6:
+				try {
+					dataNasc = new SimpleDateFormat("dd/MM/yy").parse(_dataNasc);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	   break;
+	       case 7:
+	    	   _dataNasc = "0" + _dataNasc;
+	       case 8:
+				try {
+					dataNasc = new SimpleDateFormat("dd/MM/yyyy").parse(_dataNasc);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	   break;
+	       }
+	       
+	       System.out.println(dataNasc);
+	       
+	       
+	       	       
+	       _usuario.setDataNascimento(dataNasc);
+	       return true;
+	}
+	
+	
+	//RG
+	public static void CadastrarRG(Usuario _usuario, UsuarioDAO _usuarioDAO, Scanner _input) {
+		boolean validacao = false;
+		do{
+			System.out.println("Digite o RG:");
+			String RG = _input.next();
+			validacao = VerificarRG(RG, _usuario, _usuarioDAO);
+			if(!validacao) {
+				System.out.println("RG Inválido");
+			}
+		}while(!validacao);
+		validacao = false;
+	}
+	
+	public static Boolean VerificarRG(String _RG, Usuario _usuario,  UsuarioDAO _usuarioDAO) {		
        if (_RG == null) {
     	   System.out.println("O RG não pode ser nulo");
     	   return false;
+       }
+       
+       String cleanRG = _RG.replaceAll("[^0-9]","");
+       switch(cleanRG.length()) {
+       case 7:
+    	   _RG = cleanRG.replaceAll("([0-9]{1})([0-9]{3})([0-9]{3})", "$1.$2.$3");
+    	   break;
+       case 8:
+    	   _RG = cleanRG.replaceAll("([0-9]{1})([0-9]{3})([0-9]{3})", "$1.$2.$3-");
+    	   break;
+       case 9:
+    	   _RG = cleanRG.replaceAll("([0-9]{2})([0-9]{3})([0-9]{3})", "$1.$2.$3-");
+    	   break;
+       default:
+    	   return false;
+    		   
        }
        
        if(_usuarioDAO.getUsuarioRG(_RG)) {
     	   System.out.println("O RG já está cadastrado");
     	   return false;
        }
-           
+       System.out.println(_RG);
+       _usuario.setRG(_RG);
        return true;
 	}
 	
