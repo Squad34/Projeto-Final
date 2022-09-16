@@ -11,8 +11,8 @@ public class UsuarioDAO {
     public void saveUsuario(Usuario usuario) { 
         // Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
         // de dados   
-        String sql = "INSERT INTO usuario(Nome, RG, CPF, Data_Nascimento, Email, Senha, Telefone, Estado, CEP, Endereco, Complemento, Administrador)"+
-        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario(Nome, RG, CPF, Data_Nascimento, Email, Senha, Telefone, Estado, Cidade, CEP, Endereco, Complemento, Administrador)"+
+        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             // Cria uma conexão com o banco
             conn = Conexao.createConnectionToMySQL();
@@ -28,10 +28,11 @@ public class UsuarioDAO {
             pstm.setString(6, usuario.getSenha());
             pstm.setString(7, usuario.getTelefone());
             pstm.setString(8, usuario.getEstado());
-            pstm.setString(9, usuario.getCEP());
-            pstm.setString(10, usuario.getEndereco());
-            pstm.setString(11, usuario.getComplemento());
-            pstm.setBoolean(12, usuario.getAdministrador());
+            pstm.setString(9, usuario.getCidade());
+            pstm.setString(10, usuario.getCEP());
+            pstm.setString(11, usuario.getEndereco());
+            pstm.setString(12, usuario.getComplemento());
+            pstm.setBoolean(13, usuario.getAdministrador());
            
  
             // Executa a sql para inserção dos dados
@@ -80,8 +81,8 @@ public class UsuarioDAO {
          }
      }
     public void updateUsuario(Usuario usuario) {
-	   String sql = "UPDATE usuario SET Nome = ?, Sexo = ?, RG = ?, CPF = ?,"
-	   		+ " Data_Nascimento = ?, Email = ?, Senha = ?, Telefone = ?, Estado = ?, CEP = ?, Endereco = ?, Complemento = ?" + " WHERE id = ?";
+	   String sql = "UPDATE usuario SET Nome = ?, RG = ?, CPF = ?,"
+	   		+ " Data_Nascimento = ?, Email = ?, Senha = ?, Telefone = ?, Estado = ?, Cidade = ?, CEP = ?, Endereco = ?, Complemento = ?" + " WHERE id = ?";
 	   try {
 	        // Cria uma conexão com o banco
 	        conn = Conexao.createConnectionToMySQL();
@@ -89,13 +90,14 @@ public class UsuarioDAO {
 	        pstm = conn.prepareStatement(sql);
 	
 	        pstm.setString(1, usuario.getNome());
-            pstm.setString(3, usuario.getRG());
-            pstm.setString(4, usuario.getCPF());
-            pstm.setDate(5, new Date(usuario.getDataNascimento().getTime()));
-            pstm.setString(6, usuario.getEmail());
-            pstm.setString(7, usuario.getSenha());
-            pstm.setString(8, usuario.getTelefone());
-            pstm.setString(9, usuario.getEstado());
+            pstm.setString(2, usuario.getRG());
+            pstm.setString(3, usuario.getCPF());
+            pstm.setDate(4, new Date(usuario.getDataNascimento().getTime()));
+            pstm.setString(5, usuario.getEmail());
+            pstm.setString(6, usuario.getSenha());
+            pstm.setString(7, usuario.getTelefone());
+            pstm.setString(8, usuario.getEstado());
+            pstm.setString(9, usuario.getCidade());
             pstm.setString(10, usuario.getCEP());
             pstm.setString(11, usuario.getEndereco());
             pstm.setString(12, usuario.getComplemento());
@@ -139,6 +141,7 @@ public class UsuarioDAO {
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
             	 usuario.setEstado(rset.getString("Estado"));
+            	 usuario.setCidade(rset.getString("Cidade"));
             	 usuario.setCEP(rset.getString("CEP"));
             	 usuario.setEndereco(rset.getString("Endereco"));
             	 usuario.setComplemento(rset.getString("Complemento"));
@@ -184,6 +187,7 @@ public class UsuarioDAO {
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
             	 usuario.setEstado(rset.getString("Estado"));
+            	 usuario.setCidade(rset.getString("Cidade"));
             	 usuario.setCEP(rset.getString("CEP"));
             	 usuario.setEndereco(rset.getString("Endereco"));
             	 usuario.setComplemento(rset.getString("Complemento"));
@@ -228,6 +232,7 @@ public class UsuarioDAO {
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
             	 usuario.setEstado(rset.getString("Estado"));
+            	 usuario.setCidade(rset.getString("Cidade"));
             	 usuario.setCEP(rset.getString("CEP"));
             	 usuario.setEndereco(rset.getString("Endereco"));
             	 usuario.setComplemento(rset.getString("Complemento"));
@@ -273,6 +278,7 @@ public class UsuarioDAO {
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
             	 usuario.setEstado(rset.getString("Estado"));
+            	 usuario.setCidade(rset.getString("Cidade"));
             	 usuario.setCEP(rset.getString("CEP"));
             	 usuario.setEndereco(rset.getString("Endereco"));
             	 usuario.setComplemento(rset.getString("Complemento"));

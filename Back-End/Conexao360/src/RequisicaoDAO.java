@@ -13,8 +13,8 @@ public class RequisicaoDAO {
 	public void saveRequisicao(Requisicao _requisicao) {
 		// Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
 		// de dados
-		String sql = "INSERT INTO requisicao_equipamento(ID_Usuario, Necessidade, Tipo_Equipamento, Possui_Equipamento, Divide_Equipamento, Renda_Familiar, Tipo_Entrega, DataEntrega, CEP_Entrega, Estado_Entrega, Cidade_Entrega, Endereco_Entrega, Complemento, Comentario)"+
-	        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO requisicao_equipamento(ID_Usuario, Necessidade, Tipo_Equipamento, Possui_Equipamento, Divide_Equipamento, Renda_Familiar, Tipo_Entrega, DataEntrega, Comentario)"+
+	        " VALUES(?,?,?,?,?,?,?,?,?)";
 	        try {
 	            // Cria uma conexão com o banco
 	            conn = Conexao.createConnectionToMySQL();
@@ -30,12 +30,7 @@ public class RequisicaoDAO {
 	            pstm.setDouble(6, _requisicao.getRendaFamiliar());
 	            pstm.setBoolean(7, _requisicao.getNecessitaRetirada());
 	            pstm.setDate(8, new Date(_requisicao.getDataEntrega().getTime()));
-	            pstm.setString(9, _requisicao.getCEPEntrega());
-	            pstm.setString(10, _requisicao.getEstadoEntrega());
-	            pstm.setString(11, _requisicao.getCidadeEntrega());
-	            pstm.setString(12, _requisicao.getEnderecoEntrega());
-	            pstm.setString(13, _requisicao.getComplemento());
-	            pstm.setString(14, _requisicao.getComentario());
+	            pstm.setString(9, _requisicao.getComentario());
 	           
 	 
 	            // Executa a sql para inserção dos dados
@@ -87,7 +82,7 @@ public class RequisicaoDAO {
 
 	public void updateRequisicao(Requisicao _requisicao) {
 		String sql = "UPDATE usuario SET ID = ?, ID_Usuario = ?, Necessidade = ?, Tipo_Equipamento = ?, Possui_Equipamento = ?,"
-				+ " Divide_Equipamento = ?, Renda_Familiar = ?, Tipo_Entrega = ?, DataEntrega = ?, CEP_Entrega = ?, Estado_Entrega = ?, Cidade_Entrega = ?, Endereco_Entrega = ?, Complemento = ?, Comentario = ?"
+				+ " Divide_Equipamento = ?, Renda_Familiar = ?, Tipo_Entrega = ?, DataEntrega = ?, Comentario = ?"
 				+ " WHERE id = ?";
 		try {
 			// Cria uma conexão com o banco
@@ -104,14 +99,9 @@ public class RequisicaoDAO {
 			pstm.setInt(7, _requisicao.getRendaFamiliar());
 			pstm.setBoolean(8, _requisicao.getTipoEntrega());
 			pstm.setDate(9, new Date(_requisicao.getDataEntrega().getTime()));
-			pstm.setString(10, _requisicao.getCEPEntrega());
-			pstm.setString(11, _requisicao.getEstadoEntrega());
-			pstm.setString(12, _requisicao.getCidadeEntrega());
-			pstm.setString(13, _requisicao.getEnderecoEntrega());
-			pstm.setString(14, _requisicao.getComplemento());
-			pstm.setString(15, _requisicao.getComentario());
+			pstm.setString(10, _requisicao.getComentario());
 
-			pstm.setInt(13, _requisicao.getId());
+			pstm.setInt(11, _requisicao.getId());
 			// Executa a sql para inserção dos dados
 			pstm.execute();
 
@@ -151,11 +141,6 @@ public class RequisicaoDAO {
 				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
 				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
-				_requisicao.setCEPEntrega(rset.getString("CEP_Entrega"));
-				_requisicao.setEstadoEntrega(rset.getString("Estado_Entrega"));
-				_requisicao.setCidadeEntrega(rset.getString("Cidade_Entrega"));
-				_requisicao.setEnderecoEntrega(rset.getString("Endereco_Entrega"));
-				_requisicao.setComplemento(rset.getString("Complemento"));
 				_requisicao.setComentario(rset.getString("Comentario"));
 				requisicoes.add(_requisicao);
 			}
@@ -199,11 +184,6 @@ public class RequisicaoDAO {
 				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
 				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
-				_requisicao.setCEPEntrega(rset.getString("CEP_Entrega"));
-				_requisicao.setEstadoEntrega(rset.getString("Estado_Entrega"));
-				_requisicao.setCidadeEntrega(rset.getString("Cidade_Entrega"));
-				_requisicao.setEnderecoEntrega(rset.getString("Endereco_Entrega"));
-				_requisicao.setComplemento(rset.getString("Complemento"));
 				_requisicao.setComentario(rset.getString("Comentario"));				
 			}
 		} catch (Exception e) {

@@ -12,8 +12,8 @@ public class DoacaoDAO {
 	public void saveDoacao(Doacao _doacao) {
 		// Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
 		// de dados
-		String sql = "INSERT INTO doacao(ID, ID_Usuario, Tipo_Equipamento, Estado_Equipamento, TipoColeta, DataColeta, CEP_Coleta, Estado_Coleta, Cidade_Coleta, Endereco_Coleta, Complemento, Equipamento_Disponivel, Equipamento_Doado, Comentario)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Doacao_Equipamento(ID, ID_Usuario, Tipo_Equipamento, Estado_Equipamento, TipoColeta, DataColeta, Equipamento_Disponivel, Equipamento_Doado, Comentario)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?)";
 		try {
 			// Cria uma conexão com o banco
 			conn = Conexao.createConnectionToMySQL();
@@ -27,14 +27,9 @@ public class DoacaoDAO {
 			pstm.setInt(4, _doacao.getEstadoEquipamento());
 			pstm.setBoolean(5, _doacao.getTipoColeta());
 			pstm.setDate(6, new Date(_doacao.getDataColeta().getTime()));
-			pstm.setString(7, _doacao.getCEPColeta());
-			pstm.setString(8, _doacao.getEstadoColeta());
-			pstm.setString(9, _doacao.getCidadeColeta());
-			pstm.setString(10, _doacao.getEnderecoColeta());
-			pstm.setString(11, _doacao.getComplemento());
-			pstm.setBoolean(12, _doacao.getEquipamentoDisponivel());
-			pstm.setBoolean(13, _doacao.getEquipamentoDoado());
-			pstm.setString(14, _doacao.getComentario());
+			pstm.setBoolean(7, _doacao.getEquipamentoDisponivel());
+			pstm.setBoolean(8, _doacao.getEquipamentoDoado());
+			pstm.setString(9, _doacao.getComentario());
 
 			// Executa a sql para inserção dos dados
 			pstm.execute();
@@ -84,7 +79,7 @@ public class DoacaoDAO {
 
 	public void updateDoacao(Doacao _doacao) {
 		String sql = "UPDATE usuario SET ID = ?, ID_Usuario = ?, Tipo_Equipamento = ?, Estado_Equipamento = ?, TipoColeta = ?,"
-				+ " DataColeta = ?, CEP_Coleta = ?, Estado_Coleta = ?, Cidade_Coleta = ?, Endereco_Coleta = ?, Complemento = ?, Equipamento_Disponivel = ?, Equipamento_Doado = ?, Comentario = ?"
+				+ " DataColeta = ?, Equipamento_Disponivel = ?, Equipamento_Doado = ?, Comentario = ?"
 				+ " WHERE id = ?";
 		try {
 			// Cria uma conexão com o banco
@@ -98,16 +93,11 @@ public class DoacaoDAO {
 			pstm.setInt(4, _doacao.getEstadoEquipamento());
 			pstm.setBoolean(5, _doacao.getTipoColeta());
 			pstm.setDate(6, new Date(_doacao.getDataColeta().getTime()));
-			pstm.setString(7, _doacao.getCEPColeta());
-			pstm.setString(8, _doacao.getEstadoColeta());
-			pstm.setString(9, _doacao.getCidadeColeta());
-			pstm.setString(10, _doacao.getEnderecoColeta());
-			pstm.setString(11, _doacao.getComplemento());
-			pstm.setBoolean(12, _doacao.getEquipamentoDisponivel());
-			pstm.setBoolean(13, _doacao.getEquipamentoDoado());
-			pstm.setString(14, _doacao.getComentario());
+			pstm.setBoolean(7, _doacao.getEquipamentoDisponivel());
+			pstm.setBoolean(8, _doacao.getEquipamentoDoado());
+			pstm.setString(9, _doacao.getComentario());
 
-			pstm.setInt(13, _doacao.getId());
+			pstm.setInt(10, _doacao.getId());
 			// Executa a sql para inserção dos dados
 			pstm.execute();
 
@@ -128,8 +118,8 @@ public class DoacaoDAO {
 		}
 	}
 
-	public List<Doacao> getDoacao() {
-		String sql = "SELECT * FROM doacao";
+	public List<Doacao> getListaDoacoes(int _id) {
+		String sql = "SELECT * FROM Doacao_Equipamento\r\n" + "WHERE ID_Usuario LIKE '" + _id + "';";
 		List<Doacao> doacoes = new ArrayList<Doacao>();
 		ResultSet rset = null;
 		try {
@@ -145,11 +135,6 @@ public class DoacaoDAO {
 				_doacao.setEstadoEquipamento(rset.getInt("Estado_Equipamento"));
 				_doacao.setTipoColeta(rset.getBoolean("TipoColeta"));
 				_doacao.setDataColeta(rset.getDate("DataColeta"));
-				_doacao.setCEPColeta(rset.getString("CEP_Coleta"));
-				_doacao.setEstadoColeta(rset.getString("Estado_Coleta"));
-				_doacao.setCidadeColeta(rset.getString("Cidade_Coleta"));
-				_doacao.setEnderecoColeta(rset.getString("Endereco_Coleta"));
-				_doacao.setComplemento(rset.getString("Complemento"));
 				_doacao.setEquipamentoDisponivel(rset.getBoolean("Equipamento_Disponivel"));
 				_doacao.setEquipamentoDoado(rset.getBoolean("Equipamento_Doado"));
 				_doacao.setComentario(rset.getString("Comentario"));
@@ -174,9 +159,11 @@ public class DoacaoDAO {
 		}
 		return doacoes;
 	}
+	
+	
 
-	public Doacao getDoacaoID(int id) {
-		String sql = "SELECT * FROM doacao\r\n" + "WHERE ID LIKE '" + id + "';";
+	public Doacao getDoacaoID(int _id) {
+		String sql = "SELECT * FROM Doacao_Equipamento\r\n" + "WHERE ID LIKE '" + _id + "';";
 		// Classe que vai recuperar os dados do banco de dados
 		Doacao _doacao = new Doacao();
 		ResultSet rset = null;
@@ -192,11 +179,6 @@ public class DoacaoDAO {
 				_doacao.setEstadoEquipamento(rset.getInt("Estado_Equipamento"));
 				_doacao.setTipoColeta(rset.getBoolean("TipoColeta"));
 				_doacao.setDataColeta(rset.getDate("DataColeta"));
-				_doacao.setCEPColeta(rset.getString("CEP_Coleta"));
-				_doacao.setEstadoColeta(rset.getString("Estado_Coleta"));
-				_doacao.setCidadeColeta(rset.getString("Cidade_Coleta"));
-				_doacao.setEnderecoColeta(rset.getString("Endereco_Coleta"));
-				_doacao.setComplemento(rset.getString("Complemento"));
 				_doacao.setEquipamentoDisponivel(rset.getBoolean("Equipamento_Disponivel"));
 				_doacao.setEquipamentoDoado(rset.getBoolean("Equipamento_Doado"));
 				_doacao.setComentario(rset.getString("Comentario"));

@@ -9,6 +9,7 @@ public class Usuario {
 	private String senha;
 	private String telefone;
 	private String estado;
+	private String cidade;
 	private String cep;
 	private String endereco;
 	private String complemento;
@@ -76,6 +77,13 @@ public class Usuario {
 	}
 	public void setEstado(String _estado) {
 		this.estado = _estado;
+	}
+	
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String _cidade) {
+		this.cidade = _cidade;
 	}
 	
 	public String getCEP() {

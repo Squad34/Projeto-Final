@@ -49,7 +49,7 @@ public class Principal {
 	
 	public static void MenuUsuario(UsuarioDAO _usuarioDAO, Scanner _input, boolean _logado, Usuario _usuarioLogado) {
 		RequisicaoDAO requisicaoDAO = new RequisicaoDAO();
-		DoacaoDAO doacaoDao = new DoacaoDAO();
+		DoacaoDAO doacaoDAO = new DoacaoDAO();
 		int menuInterno = 9;
 		do {
 			System.out.println("------------------------------------------------");
@@ -68,13 +68,13 @@ public class Principal {
 
 			switch(menuInterno) {
 			case 1:
-				
+				FazerDoacao(doacaoDAO, _input, _usuarioLogado);
 				break;
 			case 2:
-				
+				VerDoacoes(doacaoDAO, _usuarioLogado);
 				break;
 			case 3:
-				FazerRequisicao(requisicaoDAO, _input);
+				FazerRequisicao(requisicaoDAO, _input, _usuarioLogado);
 				break;
 			case 4:
 				VerRequisicoes(requisicaoDAO, _usuarioLogado);
@@ -115,6 +115,9 @@ public class Principal {
 		
 		CadastrarEstado(usuario, _usuarioDAO, _input);
 		
+		System.out.println("Digite a cidade:");
+		usuario.setCidade(CapturarString(_input));
+		
 		System.out.println("Digite o endereço:");
 		usuario.setEndereco(CapturarString(_input));
 		
@@ -148,11 +151,17 @@ public class Principal {
 		System.out.println("rendaFamiliar: " + r.getRendaFamiliar());
 		System.out.println("necessitaRetirada: " + r.getNecessitaRetirada());
 		System.out.println("dataEntrega: " + r.getDataEntrega());
-		System.out.println("estadoEntrega: " + r.getEstadoEntrega());
-		System.out.println("cidadeEntrega: " + r.getCidadeEntrega());
-		System.out.println("enderecoEntrega: " + r.getEnderecoEntrega());
-		System.out.println("COMPLEMENTO: " + r.getComplemento());
 		System.out.println("Comentario: " + r.getComentario());
+		System.out.println("----------------------------------- ");
+	}
+	
+	public static void PrintDoacao(Doacao d) {
+		System.out.println("Id: " + d.getId());
+		System.out.println("tipoEquipamento: " + d.getTipoEquipamento());
+		System.out.println("possuiEquipamento: " + d.getEstadoEquipamento());
+		System.out.println("divideEquipamento: " + d.getTipoColeta());
+		System.out.println("dataEntrega: " + d.getDataColeta());
+		System.out.println("Comentario: " + d.getComentario());
 		System.out.println("----------------------------------- ");
 	}
 	
@@ -161,44 +170,134 @@ public class Principal {
 		_usuarioDAO.saveUsuario(usuario);
 	}
 	
-	public static void FazerRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input){
-		Requisicao requisicao = CriarRequisicao(_requisicaoDAO, _input);
+	public static void FazerDoacao(DoacaoDAO _doacaoDAO, Scanner _input, Usuario _usuario) {
+		Doacao doacao = CriarDoacao(_doacaoDAO, _input, _usuario);
+		_doacaoDAO.saveDoacao(doacao);
+	}
+	
+	public static Doacao CriarDoacao(DoacaoDAO _doacaoDAO, Scanner _input, Usuario _usuario) {
+		Doacao doacao = new Doacao();
+		
+		int opcao = 0;
+		do {
+			System.out.println("Qual o Equipamento?");
+			System.out.println("1-Computador.");
+			System.out.println("2-Notebook");
+			System.out.println("3-Smartphone");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >3);
+		doacao.setTipoEquipamento(opcao);
+		
+		do {
+			System.out.println("Qual o estado do Equipamento?");
+			System.out.println("1-Novo");
+			System.out.println("2-Pouco uso");
+			System.out.println("3-Bastante uso, mas funcional");
+			System.out.println("4-Liga, mas tem problemas");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >4);
+		doacao.setEstadoEquipamento(opcao);
+		
+		do {
+			System.out.println("Precisa que retire o equipamento em sua casa(S/N)?");
+			System.out.println("1-Sim");
+			System.out.println("2-Não");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >2);
+		if(opcao == 1) {
+			doacao.setTipoColeta(true);
+		} else {
+			doacao.setTipoColeta(false);
+		}
+		Date dataNasc = new Date();
+		try {
+			dataNasc = new SimpleDateFormat("dd/MM/yy").parse("25/01/20");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		doacao.setDataColeta(dataNasc);
+		doacao.setEquipamentoDisponivel(true);
+		doacao.setEquipamentoDoado(false);
+		doacao.setComentario("Bla");
+		doacao.setIdUsuario(_usuario.getId());
+		return doacao;
+	}
+	
+	public static void FazerRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input, Usuario _usuario){
+		Requisicao requisicao = CriarRequisicao(_requisicaoDAO, _input, _usuario);
 		_requisicaoDAO.saveRequisicao(requisicao);
 	}
-	public static Requisicao CriarRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input) {
+	public static Requisicao CriarRequisicao(RequisicaoDAO _requisicaoDAO, Scanner _input, Usuario _usuario) {
 		boolean necessitaRetirada;
 		Requisicao requisicao = new Requisicao();
+		int opcao = 0;
+		do {
+			System.out.println("Qual a necessidade do Equipamento?");
+			System.out.println("1-Desempregado com mais de 40 anos.");
+			System.out.println("2-Cursando o 3º Ano do Ensino Médio ou 9º ano do Fundamental");
+			System.out.println("3-Cursando o 2º Ano do Ensino Médio ou 8º ano do Fundamental");
+			System.out.println("4-Cursos Profissionalizantes");
+			System.out.println("5-Graduandos e Pós-Graduandos");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >5);
+		requisicao.setNecessidade(opcao);
+		do {
+			System.out.println("Qual o tipo do Equipamento?");
+			System.out.println("1-Computador");
+			System.out.println("2-Notebook");
+			System.out.println("3-Smartphone");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >3);
+		requisicao.setTipoEquipamento(opcao);
+		do {
+			System.out.println("Possui Equipamento em casa (S/N)?");
+			System.out.println("1-Sim");
+			System.out.println("2-Não");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >2);
 		
-		System.out.println("Qual a necessidade do Equipamento?");
-		System.out.println("1-");
-		System.out.println("2-");
-		System.out.println("3-");
-		System.out.println("4-");
-		requisicao.setNecessidade(_input.nextInt());
+		if(opcao == 1) {
+			requisicao.setPossuiEquipamento(true);
+		} else {
+			requisicao.setPossuiEquipamento(false);
+		}
 		
-		System.out.println("Qual o tipo do Equipamento?");
-		System.out.println("1-");
-		System.out.println("2-");
-		System.out.println("3-");
-		System.out.println("4-");
-		requisicao.setTipoEquipamento(_input.nextInt());
+		do {
+			System.out.println("Divide Equipamento(S/N)?");
+			System.out.println("1-Sim");
+			System.out.println("2-Não");
+		}while(opcao < 0 || opcao >2);
 		
-		System.out.println("Possui Equipamento em casa (S/N)?");
-		System.out.println("1-");
-		System.out.println("2-");
-		requisicao.setPossuiEquipamento(_input.nextBoolean());
+		if(opcao == 1) {
+			requisicao.setDivideEquipamento(true);
+		} else {
+			requisicao.setDivideEquipamento(false);
+		}
+		do{
+			System.out.println("Qual a Renda Familiar?");
+			System.out.println("1-Até R$854,00");
+			System.out.println("2-Até R$1113,00");
+			System.out.println("3-Até R$1484,00");
+			System.out.println("4-Até R$2674,00");
+			System.out.println("5-Até R$4681,00");
+			System.out.println("6-Até R$9897,00");
+			System.out.println("7-Até R$17434,00");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >7);
+		requisicao.setRendaFamiliar(opcao);
 		
-		System.out.println("Divide Equipamento(S/N)?");
-		System.out.println("1-");
-		System.out.println("2-");
-		requisicao.setDivideEquipamento(_input.nextBoolean());
-		
-		System.out.println("Qual a Renda Familiar?");
-		requisicao.setRendaFamiliar(_input.nextInt());
-		
-		System.out.println("Necessita que retire o equipamento em casa(S/N)?");
-		necessitaRetirada = _input.nextBoolean();
-		requisicao.setDivideEquipamento(necessitaRetirada);
+		do {
+			System.out.println("Necessita que retire o equipamento em casa(S/N)?");
+			System.out.println("1-Sim");
+			System.out.println("2-Não");
+			opcao = _input.nextInt();
+		}while(opcao < 0 || opcao >2);
+		if(opcao == 1) {
+			requisicao.setNecessitaRetirada(true);
+		} else {
+			requisicao.setNecessitaRetirada(false);
+		}
 		
 		
 		String data = "13/09/2022";
@@ -212,13 +311,8 @@ public class Principal {
 		
 		requisicao.setDataEntrega(dataEntr);
 		
-		requisicao.setCEPEntrega("00000-000");
-		requisicao.setEstadoEntrega("SP");
-		requisicao.setCidadeEntrega("São Paulo");
-		requisicao.setEnderecoEntrega("Rua Jorge, 99");
-		requisicao.setComplemento("Blabla");
 		requisicao.setComentario("bleble");
-		requisicao.setIdUsuario(1);
+		requisicao.setIdUsuario(_usuario.getId());
 		
 		
 		return requisicao;
@@ -553,9 +647,15 @@ public class Principal {
         return true;
     }
 	
-		public static void VerRequisicoes(RequisicaoDAO _requisicaoDAO, Usuario _usuarioLogado) {
+	public static void VerRequisicoes(RequisicaoDAO _requisicaoDAO, Usuario _usuarioLogado) {
 		for (Requisicao r : _requisicaoDAO.getRequisicao(_usuarioLogado.getId())) {
 			PrintRequisicao(r);
+		}
+	}
+	
+	public static void VerDoacoes(DoacaoDAO _doacaoDAO, Usuario _usuarioLogado) {
+		for (Doacao d : _doacaoDAO.getListaDoacoes(_usuarioLogado.getId())) {
+			PrintDoacao(d);
 		}
 	}
 }

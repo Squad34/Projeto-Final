@@ -8,11 +8,6 @@ public class Doacao {
 	private int estadoEquipamento;
 	private boolean tipoColeta;
 	private Date dataColeta;
-	private String CEPColeta;
-	private String estadoColeta;
-	private String cidadeColeta;
-	private String enderecoColeta;
-	private String complemento;
 	private boolean equipamentoDisponivel;
 	private boolean equipamentoDoado;
 	private String comentario;
@@ -63,46 +58,6 @@ public class Doacao {
 
 	public void setDataColeta(Date _dataColeta) {
 		this.dataColeta = _dataColeta;
-	}
-
-	public String getCEPColeta() {
-		return CEPColeta;
-	}
-
-	public void setCEPColeta(String _CEPColeta) {
-		this.CEPColeta = _CEPColeta;
-	}
-
-	public String getEstadoColeta() {
-		return estadoColeta;
-	}
-
-	public void setEstadoColeta(String _estadoColeta) {
-		this.estadoColeta = _estadoColeta;
-	}
-
-	public String getCidadeColeta() {
-		return cidadeColeta;
-	}
-
-	public void setCidadeColeta(String _cidadeColeta) {
-		this.cidadeColeta = _cidadeColeta;
-	}
-
-	public String getEnderecoColeta() {
-		return enderecoColeta;
-	}
-
-	public void setEnderecoColeta(String _enderecoColeta) {
-		this.enderecoColeta = _enderecoColeta;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String _complemento) {
-		this.complemento = _complemento;
 	}
 
 	public boolean getEquipamentoDisponivel() {

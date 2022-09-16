@@ -12,11 +12,6 @@ public class Requisicao {
 	private boolean tipoEntrega;
 	private boolean necessitaRetirada;
 	private Date dataEntrega;
-	private String CEPEntrega;
-	private String estadoEntrega;
-	private String cidadeEntrega;
-	private String enderecoEntrega;
-	private String complemento;
 	private String comentario;
 
 	public int getId() {
@@ -95,46 +90,6 @@ public class Requisicao {
 
 	public void setDataEntrega(Date _dataEntrega) {
 		this.dataEntrega = _dataEntrega;
-	}
-
-	public String getCEPEntrega() {
-		return CEPEntrega;
-	}
-
-	public void setCEPEntrega(String _CEPEntrega) {
-		this.CEPEntrega = _CEPEntrega;
-	}
-
-	public String getEstadoEntrega() {
-		return estadoEntrega;
-	}
-
-	public void setEstadoEntrega(String _estadoEntrega) {
-		this.estadoEntrega = _estadoEntrega;
-	}
-
-	public String getCidadeEntrega() {
-		return cidadeEntrega;
-	}
-
-	public void setCidadeEntrega(String _cidadeEntrega) {
-		this.cidadeEntrega = _cidadeEntrega;
-	}
-
-	public String getEnderecoEntrega() {
-		return enderecoEntrega;
-	}
-
-	public void setEnderecoEntrega(String _enderecoEntrega) {
-		this.enderecoEntrega = _enderecoEntrega;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String _complemento) {
-		this.complemento = _complemento;
 	}
 
 	public String getComentario() {
