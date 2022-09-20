@@ -57,7 +57,7 @@
                         <option value="5">Graduandos e Pós-Graduandos</option>
                     </select>
                 </div>
-                <!--Equipamento-->
+                <!--Tipo Equipamento-->
                 <div class="mb-3">
                     <label for="equipamento" class="form-label">Por favor, informe o tipo de equipamento que
                         precisa:</label>
@@ -68,6 +68,7 @@
                         <option value="3">Smartphone</option>
                     </select>
                 </div>
+                <!--Possui Equipamento-->
                 <div class="mb-3">
                     <label for="equipamento" class="form-label">Possui algum equipamento na sua residência:</label>
                     <select class="form-select" aria-label="Default select example">
@@ -76,6 +77,7 @@
                         <option value="2">NÃO</option>
                     </select>
                 </div>
+                <!--Divide o Equipamento-->
                 <div class="mb-3">
                     <label for="equipamento" class="form-label">Caso possua um equipamento, você divide ele com mais
                         alguém?</label>
@@ -100,7 +102,7 @@
                         <option value="7">Até R$ 17.434,00</option>
                     </select>
                 </div>
-                <!--Tipo de Coleta-->
+                <!--Tipo de Entrega-->
                 <div class="mb-3">
                     <label for="entrega" class="form-label">Tipo de Entrega:</label>
                     <div class="mb-3">
@@ -114,44 +116,6 @@
                 <div class="mb-3 m-1">
                     <label for="data" class="form-label">Data para Entrega:</label>
                     <input type="date" name="data" id="data" class="form-control" required>
-                </div>
-                <!--Local para Entrega-->
-                <div class="mb-3">
-                    <label for="localEntrega" class="form-label">Local para Entrega:</label>
-                </div>
-                <div class="mb-3">
-                    <!--CEP-->
-                    <label for="CEP" class="form-label">CEP:</label>
-                    <div class="m-1"><input type="text" id="localPartida" class="form-control" required
-                            placeholder="00000-000"></div>
-                    <!--Estado-->
-                    <label for="estado" class="form-label">Estado:</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Escolha um Estado:</option>
-                        <option value="1">São Paulo</option>
-                    </select>
-                    <!--Cidade-->
-                    <div class="mb-3">
-                        <label for="cidade" class="form-label">Cidade:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Escolha sua Cidade:</option>
-                            <option value="1">São Paulo</option>
-                        </select>
-                    </div>
-                    <!--Endereço-->
-                    <div class="mb-3 col-12">
-                        <label for="endereco" class="form-label">Endereço</label>
-                        <input type="text" class="form-control" id="endereco" placeholder="Rua, Bairro" required>
-                        <div class="invalid-feedback">
-                            Por favor, digite seu endereço.
-                        </div>
-                    </div>
-                    <div class="mb-3 col-12">
-                        <label for="complemento" class="form-label">Complemento<span
-                                class="text-muted">(Opcional):</span></label>
-                        <input type="text" class="form-control" id="complemento"
-                            placeholder="Apartamento ou Numero da Casa">
-                    </div>
                 </div>
                 <!--Comentário-->
                 <div class="mb-3 m-1">
