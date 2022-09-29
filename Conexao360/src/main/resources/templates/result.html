@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meu CRUD em NodeJS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+        </script>
+</head>
+
+
+
+<body>
+    <div class="container">
+       <h1>Usuario cadastrado</h1>
+       <p>Nome: <b th:text="${usuario.nome}" /></p>
+       <!--
+       <p>CPF: <b th:text="${orcamento.CPF}" /></p>
+       <p>Email: <b th:text="${orcamento.email}" /></p>
+       <p>Telefone: <b th:text="${orcamento.telefone}" /></p>
+       <p>Cidade: <b th:text="${orcamento.cidade}" /></p>
+       <p>Endereço: <b th:text="${orcamento.endereco}" /></p>
+       <p>Complemento: <b th:text="${orcamento.complemento}" /></p>
+       <p>Entidade: <b th:text="${orcamento.entidade}" /></p>
+       <p>Pacote: <b th:text="${orcamento.pacotes}" /></p>
+       <p>Mensagem: <b th:text="${orcamento.mensagem}" /></p>
+       <p>valor: <b th:text="${orcamento.valorOrcamento}" /></p>
+       -->
+        <p> <a href="/">voltar</a></p>
+   </div>
+</body>
