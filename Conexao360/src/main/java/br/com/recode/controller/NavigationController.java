@@ -19,6 +19,20 @@ public class NavigationController {
         return "index";
     }
 	
+	@GetMapping("/login")
+    public String Login() {
+        return "login";
+    }
+	
+	@GetMapping("/cadastro-doacao-servico")
+    public String CadastroDoacaoServico() {
+        return "cadastro-doacao-servico";
+    }
+	
+	@GetMapping("/cadastro-requisicao-servico")
+    public String CadastroRequisicaoServico() {
+        return "cadastro-requisicao-servico";
+    }
 	
 	@PostMapping("/cadastrarUsuario")
     public String CadastrarUsuario(@ModelAttribute Usuario usuario) {
