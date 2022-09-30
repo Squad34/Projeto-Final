@@ -15,7 +15,7 @@ public class RequisicaoDAO {
 	Connection conn = null;
 	PreparedStatement pstm = null;
 
-	public void saveRequisicao(Requisicao _requisicao) {
+	public void CadastrarRequisicao(Requisicao _requisicao) {
 		// Isso é uma sql comum, os ? são os parâmetros que nós vamos adicionar na base
 		// de dados
 		String sql = "INSERT INTO requisicao_equipamento(ID_Usuario, Necessidade, Tipo_Equipamento, Possui_Equipamento, Divide_Equipamento, Renda_Familiar, Tipo_Entrega, DataEntrega, Comentario)"+
@@ -63,7 +63,7 @@ public class RequisicaoDAO {
 	}
 
 	public void removeById(int id) {
-		String sql = "DELETE FROM usuario WHERE id = ?";
+		String sql = "DELETE FROM requisicao_equipamento WHERE id = ?";
 		try {
 			conn = Conexao.createConnectionMySQL(); // cria a conexao
 			pstm = conn.prepareStatement(sql); // passa comando sql para o objeto pstm
@@ -102,7 +102,7 @@ public class RequisicaoDAO {
 			pstm.setBoolean(5, _requisicao.getPossuiEquipamento());
 			pstm.setBoolean(6, _requisicao.getDivideEquipamento());
 			pstm.setInt(7, _requisicao.getRendaFamiliar());
-			pstm.setBoolean(8, _requisicao.getTipoEntrega());
+			pstm.setBoolean(8, _requisicao.getNecessitaRetirada());
 			pstm.setDate(9, new Date(_requisicao.getDataEntrega().getTime()));
 			pstm.setString(10, _requisicao.getComentario());
 
@@ -144,7 +144,7 @@ public class RequisicaoDAO {
 				_requisicao.setPossuiEquipamento(rset.getBoolean("Possui_Equipamento"));
 				_requisicao.setDivideEquipamento(rset.getBoolean("Divide_Equipamento"));
 				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
-				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
+				_requisicao.setNecessitaRetirada(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
 				_requisicao.setComentario(rset.getString("Comentario"));
 				requisicoes.add(_requisicao);
@@ -187,7 +187,7 @@ public class RequisicaoDAO {
 				_requisicao.setPossuiEquipamento(rset.getBoolean("Possui_Equipamento"));
 				_requisicao.setDivideEquipamento(rset.getBoolean("Divide_Equipamento"));
 				_requisicao.setRendaFamiliar(rset.getInt("Renda_Familiar"));
-				_requisicao.setTipoEntrega(rset.getBoolean("Tipo_Entrega"));
+				_requisicao.setNecessitaRetirada(rset.getBoolean("Tipo_Entrega"));
 				_requisicao.setDataEntrega(rset.getDate("DataEntrega"));
 				_requisicao.setComentario(rset.getString("Comentario"));				
 			}

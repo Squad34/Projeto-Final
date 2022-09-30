@@ -46,6 +46,7 @@
 			<div class="p-5 mb-4 bg-light rounded-3">
 				<h1 class="display-5 fw-bold">Minhas Doações:</h1>
 				<table class="table">
+					<!--
 					<thead>
 						<tr>
 							<th scope="col">Doações</th>
@@ -70,6 +71,18 @@
 							<td>Entregue</td>
 						</tr>
 					</tbody>
+					-->
+					
+					<tr th:each="doacao : ${doacoes}">
+							<th scope="row" th:text="${doacao.id}"></th>
+							<td th:text="${doacao.tipoEquipamento}"></td>
+							<td th:text="${doacao.estadoEquipamento}"></td>
+							<td th:text="${doacao.equipamentoDisponivel}"></td>
+							<td th:text="${doacao.equipamentoDoado}"></td>
+							<td>
+								<a th:href="@{'/deletarDoacao?id='+${doacao.id}}" class="btn btn-danger btn-block mb-4">Excluir</a>
+							</td>
+						</tr>
 				</table>
 			</div>
 			<div class="p-5 mb-4 bg-light rounded-3">

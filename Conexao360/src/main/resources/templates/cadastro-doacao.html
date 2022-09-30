@@ -2,18 +2,14 @@
 <html lang="pt-br">
 
 <head>
-<title>Conexão 360 - Doação</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--Código para inserir o logo na aba-->
-<link rel="icon" type="image/png"
-	href="img/Icones/icone.png" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="css/cadastro.css">
+	<title>Conexão 360 - Doação</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--Código para inserir o logo na aba-->
+	<link rel="icon" type="image/png" href="img/Icones/icone.png" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/cadastro.css">
 </head>
 
 <body>
@@ -24,18 +20,16 @@
 				<div class="nav1">
 					<nav class="navbar navbar-expand-lg navbar-dark">
 						<div class="container-fluid">
-							<img src="img/Icones/LogoHorizontal.png"
-								height="40px">
-							<button class="navbar-toggler" type="button"
-								data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-								aria-controls="navbarNavAltMarkup" aria-expanded="false"
-								aria-label="Toggle navigation">
+							<img src="img/Icones/LogoHorizontal.png" height="40px">
+							<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+								data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+								aria-expanded="false" aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"></span>
 							</button>
 							<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 								<div class="navbar-nav">
 									<a class="nav-link" aria-current="page" href="/">Home</a>
-									<a class="nav-link active" href="/cadastro">Área de Usuário</a>
+									<a class="nav-link active" href="/cadastro">Cadastro</a>
 									<a class="nav-link" href="/contato">Contato</a>
 									<a class="nav-link" href="/sobre">Sobre</a>
 								</div>
@@ -49,13 +43,12 @@
 		<!-- INÍCIO DO CADASTRO -->
 		<main class="container d-flex justify-content-center flex-column">
 			<h1>Doe um Equipamento</h1>
-			<form action="">
+			<form th:action="@{/cadastrarDoacao}" method="post" th:object="${doacao}">
 				<!--Tipo Equipamento-->
 				<div class="mb-3">
-					<label for="equipamento" class="form-label">Tipo de
-						equipamento:</label> <select class="form-select"
-						aria-label="Default select example">
-						<option selected>Selecione o tipo de equipamento está
+					<label for="equipamento" class="form-label">Tipo de equipamento:</label>
+					<select class="form-select" aria-label="Default select example" th:field="*{tipoEquipamento}">
+						<option value="0" selected>Selecione o tipo de equipamento está
 							disposto à doar:</option>
 						<option value="1">Computador</option>
 						<option value="2">Notebook</option>
@@ -64,11 +57,9 @@
 				</div>
 				<!--Estado Equipamento-->
 				<div class="mb-3">
-					<label for="equipamento" class="form-label">Qual o estado
-						do equipamento:</label> <select class="form-select"
-						aria-label="Default select example">
-						<option selected>Selecione o tipo de equipamento está
-							disposto à doar:</option>
+					<label for="equipamento" class="form-label">Qual o estado do equipamento:</label>
+					<select class="form-select" aria-label="Default select example" th:field="*{estadoEquipamento}">
+						<option value="0" selected>Selecione o tipo de equipamento está	disposto à doar:</option>
 						<option value="1">Novo</option>
 						<option value="2">Pouco uso</option>
 						<option value="3">Bastante uso, mas funcional</option>
@@ -79,28 +70,29 @@
 				<div class="mb-3">
 					<label for="coleta" class="form-label">Tipo de Coleta:</label>
 					<div class="mb-3">
-						<input type="radio" name="opc" id="ag" value="ag" required /> <label
-							for="ag">Agendar Coleta</label> <input type="radio" name="opc"
-							id="ll" value="ll" required /> <label for="ll">Levar ao
-							Local</label>
+						<input type="radio" name="opc" id="ag" value="true" th:field="*{necessitaRetirada}" required />
+						<label for="ag">Agendar Coleta</label>
+						<input type="radio" name="opc" id="ll" value="false" th:field="*{necessitaRetirada}" required />
+						<label for="ll">Levar ao Local</label>
 					</div>
 				</div>
 				<!--Data Coleta-->
 				<div class="mb-3">
-					<label for="data" class="form-label">Agende sua coleta:</label> <input
-						type="date" name="data" id="data" class="form-control" required />
+					<label for="data" class="form-label">Agende sua coleta:</label> <input type="date" name="data"
+						id="data" class="form-control" th:field="*{dataColeta}" required />
 				</div>
 				<!--Comentário-->
 				<div class="mb-3 m-1">
 					<label for="comentario" class="form-label">Comentário:</label>
-					<textarea class="form-control" id="dependentes" rows="3"></textarea>
+					<textarea class="form-control" id="dependentes" rows="3" th:field="*{comentario}"></textarea>
 				</div>
 
 				<!--Button enviar-->
 				<div class="m-1">
-					<input type="submit" class="btn btn-primary" value="Enviar" /> <input
-						type="reset" class="btn btn-primary" value="Limpar" />
+					<input type="submit" class="btn btn-primary" value="Enviar" />
+					<input type="reset"  class="btn btn-primary" value="Limpar" />
 				</div>
+				
 			</form>
 		</main>
 		<!-- FIM DO CADASTRO -->
@@ -141,12 +133,10 @@
 			</div>
 		</footer>
 		<!-- FIM DO FOOTER -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
 			integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
 			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
 			integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
 			crossorigin="anonymous"></script>
 	</div>

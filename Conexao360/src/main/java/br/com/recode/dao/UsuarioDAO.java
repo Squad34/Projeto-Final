@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +89,7 @@ public class UsuarioDAO {
      }
     public void updateUsuario(Usuario usuario) {
 	   String sql = "UPDATE usuario SET Nome = ?, RG = ?, CPF = ?,"
-	   		+ " Data_Nascimento = ?, Email = ?, Senha = ?, Telefone = ?, Estado = ?, Cidade = ?, CEP = ?, Endereco = ?, Complemento = ?" + " WHERE id = ?";
+	   		+ " DataNascimento = ?, Email = ?, Senha = ?, Telefone = ?, Estado = ?, Cidade = ?, CEP = ?, Endereco = ?, Complemento = ?" + " WHERE id = ?";
 	   try {
 	        // Cria uma conexão com o banco
 	        conn = Conexao.createConnectionMySQL();
@@ -144,7 +143,7 @@ public class UsuarioDAO {
             	 usuario.setNome(rset.getString("Nome"));
             	 usuario.setRg(rset.getString("RG"));
             	 usuario.setCpf(rset.getString("CPF"));
-            	 usuario.setDataNasc(rset.getDate("Data_Nascimento"));
+            	 usuario.setDataNasc(rset.getDate("DataNascimento"));
             	 usuario.setEmail(rset.getString("Email"));
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
@@ -190,7 +189,7 @@ public class UsuarioDAO {
             	 usuario.setNome(rset.getString("Nome"));
             	 usuario.setRg(rset.getString("RG"));
             	 usuario.setCpf(rset.getString("CPF"));
-            	 usuario.setDataNasc(rset.getDate("Data_Nascimento"));
+            	 usuario.setDataNasc(rset.getDate("DataNascimento"));
             	 usuario.setEmail(rset.getString("Email"));
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
@@ -235,7 +234,7 @@ public class UsuarioDAO {
             	 usuario.setNome(rset.getString("Nome"));
             	 usuario.setRg(rset.getString("RG"));
             	 usuario.setCpf(rset.getString("CPF"));
-            	 usuario.setDataNasc(rset.getDate("Data_Nascimento"));
+            	 usuario.setDataNasc(rset.getDate("DataNascimento"));
             	 usuario.setEmail(rset.getString("Email"));
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));
@@ -281,7 +280,7 @@ public class UsuarioDAO {
             	 usuario.setNome(rset.getString("Nome"));
             	 usuario.setRg(rset.getString("RG"));
             	 usuario.setCpf(rset.getString("CPF"));
-            	 usuario.setDataNasc(rset.getDate("Data_Nascimento"));
+            	 usuario.setDataNasc(rset.getDate("DataNascimento"));
             	 usuario.setEmail(rset.getString("Email"));
             	 usuario.setSenha(rset.getString("Senha"));
             	 usuario.setTelefone(rset.getString("Telefone"));

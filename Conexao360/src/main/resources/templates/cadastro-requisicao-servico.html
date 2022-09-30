@@ -46,13 +46,8 @@
 			<div class="p-5 mb-4 bg-light rounded-3">
 				<h1 class="display-5 fw-bold">Minhas Requisições:</h1>
 				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Requisições</th>
-							<th scope="col">Equipamentos</th>
-							<th scope="col">Status de Pedido</th>
-						</tr>
-					</thead>
+				<!--
+					
 					<tbody>
 						<tr>
 							<th scope="row">1</th>
@@ -70,6 +65,30 @@
 							<td>Entregue</td>
 						</tr>
 					</tbody>
+					-->
+					<thead>
+						<tr>
+							<th scope="col">ID Requisição</th>
+							<th scope="col">Necessidade</th>
+							<th scope="col">Tipo Equipamento</th>
+							<th scope="col">Possui Equipamento</th>
+							<th scope="col">Divide Equipamento</th>
+							<th scope="col">Renda Familiar</th>
+							
+						</tr>
+					</thead>
+					<tr data-th-each="requisicao : ${requisicoes}">
+						<th scope="row" th:text="${requisicao.id}"></th>
+						<td th:text="${requisicao.necessidade}"></td>
+						<td th:text="${requisicao.tipoEquipamento}"></td>
+						<td th:text="${requisicao.possuiEquipamento}"></td>
+						<td th:text="${requisicao.divideEquipamento}"></td>
+						<td th:text="${requisicao.rendaFamiliar}"></td>
+						<td>
+							<a th:href="@{'/deletarRequisicao?id='+${requisicao.id}}" class="btn btn-danger btn-block mb-4">Excluir</a>
+						</td>
+					</tr>
+						
 				</table>
 			</div>
 			<div class="p-5 mb-4 bg-light rounded-3">

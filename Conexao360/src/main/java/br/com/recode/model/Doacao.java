@@ -1,13 +1,17 @@
 package br.com.recode.model;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class Doacao {
 
 	private int id;
 	private int id_Usuario;
 	private int tipoEquipamento;
 	private int estadoEquipamento;
-	private boolean tipoColeta;
+	private boolean necessitaRetirada;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date dataColeta;
 	private boolean equipamentoDisponivel;
 	private boolean equipamentoDoado;
@@ -45,12 +49,12 @@ public class Doacao {
 		this.estadoEquipamento = _estadoEquipamento;
 	}
 
-	public boolean getTipoColeta() {
-		return tipoColeta;
+	public boolean getNecessitaRetirada() {
+		return necessitaRetirada;
 	}
 
-	public void setTipoColeta(boolean _tipoColeta) {
-		this.tipoColeta = _tipoColeta;
+	public void setNecessitaRetirada(boolean _necessitaRetirada) {
+		this.necessitaRetirada = _necessitaRetirada;
 	}
 
 	public Date getDataColeta() {

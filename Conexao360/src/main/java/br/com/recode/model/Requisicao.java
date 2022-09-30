@@ -1,6 +1,9 @@
 package br.com.recode.model;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class Requisicao {
 
 	private int id;
@@ -10,8 +13,8 @@ public class Requisicao {
 	private boolean possuiEquipamento;
 	private boolean divideEquipamento;
 	private int rendaFamiliar;
-	private boolean tipoEntrega;
 	private boolean necessitaRetirada;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date dataEntrega;
 	private String comentario;
 
@@ -69,14 +72,6 @@ public class Requisicao {
 
 	public void setRendaFamiliar(int _rendaFamiliar) {
 		this.rendaFamiliar = _rendaFamiliar;
-	}
-
-	public boolean getTipoEntrega() {
-		return tipoEntrega;
-	}
-
-	public void setTipoEntrega(boolean _tipoEntrega) {
-		this.tipoEntrega = _tipoEntrega;
 	}
 	
 	public boolean getNecessitaRetirada() {

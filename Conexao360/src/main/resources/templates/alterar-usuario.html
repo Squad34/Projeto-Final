@@ -47,7 +47,7 @@
 		<!-- INÍCIO DO CADASTRO -->
 		<main class="container d-flex justify-content-center flex-column">
 			<h1>Inicie o seu Cadastro:</h1>
-			<form th:action="@{/cadastrarUsuario}" method="post" th:object="${usuario}">
+			<form th:action="@{/alterarUsuario}" method="post" th:object="${usuario}">
 				<div class="mb-3">
 					<!--Nome-->
 					<div class="mb-3">
@@ -74,23 +74,16 @@
 					</div>
 					<!--Email-->
 					<div class="mb-3">
-						<label for="email" class="form-label">Email:</label> <input
-							type="email" name="email" id="email" class="form-control"
+						<label for="email" class="form-label">Email:</label>
+						<input type="email" name="email" id="email" class="form-control"
 							required placeholder="Email:" th:field="*{email}">
 					</div>
 					<!--Senha-->
 					<div class="mb-3">
-						<label for="senha" class="form-label">Senha:</label> <input
-							type="senha" name="senha" id="senha" class="form-control"
+						<label for="senha" class="form-label">Senha:</label>
+						<input type="text" name="senha" id="senha" class="form-control"
 							required placeholder="Senha:" th:field="*{senha}">
 					</div>
-					<!--Confirme sua Senha
-					<div class="mb-3">
-						<label for="senha2" class="form-label">Confirme sua Senha:</label>
-						<input type="senha2" name="senha2" id="senha2"
-							class="form-control" required placeholder="Confirme sua Senha:">
-					</div>
-					-->
 					<!--Telefone-->
 					<div class="mb-3">
 						<label for="tel" class="form-label">Telefone:</label> <input
@@ -166,12 +159,9 @@
 							<input type="submit" class="btn btn-primary " value="Enviar">
 							<input type="reset" class="btn btn-primary" value="Limpar">
 						</div>
-						<div class="col-md-3 offset-md-4">
-							<a class="btn btn-primary" href="/cadastro-servico"
-								role="button">Clique para Prosseguir</a>
-						</div>
 					</div>
 				</div>
+			</form>
 		</main>
 	</div>
 	<!-- FIM DO CADASTRO -->
