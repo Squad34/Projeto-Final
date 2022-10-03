@@ -16,28 +16,25 @@
 	<div class="section">
 		<!-- INÍCIO BARRA DE NAVEGAÇÃO -->
 		<header>
-			<div class="nav1">
-				<nav class="navbar navbar-expand-lg navbar-dark">
-					<div class="container-fluid">
-						<div>
-							<img src="img/Icones/LogoHorizontal.png" height="40px">
-						</div>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-							data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-							aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-							<div class="navbar-nav">
-								<a class="nav-link" aria-current="page" href="/">Home</a>
-								<a class="nav-link active" href="/cadastro">Área de Usuário</a>
-								<a class="nav-link" href="/contato">Contato</a>
-								<a class="nav-link" href="/sobre">Sobre</a>
-							</div>
+			<nav class="navbar navbar-expand-lg navbar-dark">
+				<div class="container-fluid">
+					<img src="img/Icones/LogoHorizontal.png" height="40px">
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+						aria-controls="navbarNavAltMarkup" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="navbar-nav">
+							<a class="nav-link" href="/">Home</a>
+							<a class="nav-link" href="/contato">Contato</a>
+							<a class="nav-link" href="/sobre">Sobre</a>
+							<a class="nav-link active" aria-current="page" href="/login">Área de Usuário</a>
 						</div>
 					</div>
-				</nav>
-			</div>
+				</div>
+			</nav>
 		</header>
 		<!-- FIM BARRA DE NAVEGAÇÃO -->
 		<!-- INÍCIO DA ÁREA DE TRIAGEM -->
@@ -46,43 +43,64 @@
 			<div class="p-5 mb-4 bg-light rounded-3">
 				<h1 class="display-5 fw-bold">Minhas Doações:</h1>
 				<table class="table">
-					<!--
 					<thead>
 						<tr>
-							<th scope="col">Doações</th>
-							<th scope="col">Equipamentos</th>
-							<th scope="col">Status</th>
+							<th scope="col">Doação</th>
+							<th scope="col">Tipo Equipamento</th>
+							<th scope="col">Estado Equipamento</th>
+							<th scope="col">Tipo Entrega</th>
+							<th scope="col">Data Coleta</th>
+							<th scope="col">Entregue</th>
+							<th scope="col">Doado</th>
+							<th scope="col">Comentário</th>
+							<th scope="col">Cancelar</th>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Notebook</td>
-							<td>Enviado</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Smartphone</td>
-							<td>Aguardando</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Computador</td>
-							<td>Entregue</td>
-						</tr>
-					</tbody>
-					-->
-					
+					</thead>					
 					<tr th:each="doacao : ${doacoes}">
-							<th scope="row" th:text="${doacao.id}"></th>
-							<td th:text="${doacao.tipoEquipamento}"></td>
-							<td th:text="${doacao.estadoEquipamento}"></td>
-							<td th:text="${doacao.equipamentoDisponivel}"></td>
-							<td th:text="${doacao.equipamentoDoado}"></td>
-							<td>
-								<a th:href="@{'/deletarDoacao?id='+${doacao.id}}" class="btn btn-danger btn-block mb-4">Excluir</a>
-							</td>
-						</tr>
+						<td th:text="${doacaoStat.index+1}"></td>
+						<td th:switch="${doacao.tipoEquipamento}">
+							<a th:case="'1'">Computador</a>
+							<a th:case="'2'">Notebook</a>
+							<a th:case="'3'">Smartphone</a>
+						</td>
+						<td th:switch="${doacao.estadoEquipamento}">
+							<a th:case="'1'">Novo</a>
+							<a th:case="'2'">Pouco Uso</a>
+							<a th:case="'3'">Funcional</a>
+							<a th:case="'4'">Com Problemas</a>
+						</td>
+						<td th:if="${doacao.necessitaRetirada}">
+							<a>Necessita Retirada</a>
+						</td>
+						<td th:if="${!doacao.necessitaRetirada}">
+							<a>Entregarei Pessoalmente</a>
+						</td>
+						<td th:if="${doacao.necessitaRetirada}">
+							<a th:text="${doacao.dataColeta}"></a>
+						</td>
+						<td th:if="${!doacao.necessitaRetirada}">
+							<a>N/A</a>
+						</td>
+						<td th:if="${doacao.equipamentoDisponivel}">
+							<a>Entregue, pronto para doação</a>
+						</td>
+						<td th:if="${!doacao.equipamentoDisponivel}">
+							<a>Não entregue</a>
+						</td>
+						<td th:if="${doacao.equipamentoDoado}">
+							<a>Doado</a>
+						</td>
+						<td th:if="${!doacao.equipamentoDoado}">
+							<a>Não doado</a>
+						</td>
+						<td th:text="${doacao.comentario}"></td>
+						<td th:if="${!doacao.equipamentoDoado}">
+							<a th:href="@{'/deletarDoacao?id='+${doacao.id}}" class="btn btn-danger btn-block mb-4">Cancelar</a>
+						</td>
+						<td th:if="${doacao.equipamentoDoado}">
+							<a>Não é possível cancelar</a>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div class="p-5 mb-4 bg-light rounded-3">

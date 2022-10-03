@@ -76,7 +76,7 @@ public class NavigationController {
 		System.out.println("Entrou na página de Login");
 		if(usuarioLogado == null) {
 			model.addAttribute("usuario", new Usuario());
-			return "redirect:login";
+			return "login";
 		} else {
 			return "redirect:cadastro-servico";
 		}
