@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<title>Conexão 360 - Serviço</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--Código para inserir o logo na aba-->
+	<link rel="icon" type="image/png" href="img/Icones/icone.png" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+	<div class="section">
+		<!-- INÍCIO BARRA DE NAVEGAÇÃO -->
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark">
+				<div class="container-fluid">
+					<img src="img/Icones/LogoHorizontal.png" height="40px">
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+						aria-controls="navbarNavAltMarkup" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="navbar-nav">
+							<a class="nav-link" href="/">Home</a>
+							<a class="nav-link" href="/contato">Contato</a>
+							<a class="nav-link" href="/sobre">Sobre</a>
+							<a class="nav-link active" aria-current="page" href="/login">Área de Usuário</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- FIM BARRA DE NAVEGAÇÃO -->
+		<!-- INÍCIO DA ÁREA DE TRIAGEM -->
+		<main class="container d-flex justify-content-center flex-column">
+			<h1>Área de Doação:</h1>
+			<div class="Jumbotron p-1 mb-4 bg-light rounded-3">
+				<h2 class="display-5 fw-bold">Minhas Doações:</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Doação</th>
+							<th scope="col">Tipo Equipamento</th>
+							<th scope="col">Estado Equipamento</th>
+							<th scope="col">Tipo Entrega</th>
+							<th scope="col">Data Coleta</th>
+							<th scope="col">Comentário</th>
+							<th scope="col">Cancelar</th>
+						</tr>
+					</thead>					
+					<tr th:each="doacao : ${doacoes}">
+						<td data-label="Doação nº" th:text="${doacaoStat.index+1}"></td>
+						<td data-label="Tipo Equipamento" th:switch="${doacao.tipoEquipamento}">
+							<a th:case="'1'">Computador</a>
+							<a th:case="'2'">Notebook</a>
+							<a th:case="'3'">Smartphone</a>
+						</td>
+						<td data-label="Estado Equipamento" th:switch="${doacao.estadoEquipamento}">
+							<a th:case="'1'">Novo</a>
+							<a th:case="'2'">Pouco Uso</a>
+							<a th:case="'3'">Funcional</a>
+							<a th:case="'4'">Com Problemas</a>
+						</td>
+						<td data-label="Entrega" th:if="${doacao.necessitaRetirada}">
+							<a>Necessita Retirada</a>
+						</td>
+						<td data-label="Entrega" th:if="${!doacao.necessitaRetirada}">
+							<a>Entregarei Pessoalmente</a>
+						</td>
+						<td data-label="Data Coleta" th:if="${doacao.necessitaRetirada}">
+							<a th:text="${doacao.dataColeta}"></a>
+						</td>
+						<td data-label="Data Coleta" th:if="${!doacao.necessitaRetirada}">
+							<a>N/A</a>
+						</td>			
+						<td data-label="Comentário" th:text="${doacao.comentario}"></td>
+						<td data-label="Cancelar" th:if="${!doacao.equipamentoDoado}">
+							<a th:href="@{'/deletarDoacao?id='+${doacao.id}}" class="btn btn-danger btn-block mb-4">Cancelar</a>
+						</td>
+						<td data-label="Cancelar" th:if="${doacao.equipamentoDoado}">
+							<a>Não é possível cancelar</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="p-1 mb-4 bg-light rounded-3">
+				<h1 class="display-5 fw-bold">Doar Equipamento</h1>
+				<p class="col-md-11 fs-5">Compartilhar é um ato de boa vontade
+					que impacta a vida de muitas pessoas. Esse gesto gera consequências
+					positivas que começam diretamente no projeto e vão muito além, o
+					equipamento que você puder contribuir poderá fazer toda a diferença
+					no apoio as pessoas carentes.</p>
+				<a class="btn btn-primary" href="/cadastro-doacao" role="button">Doar
+					Equipamento</a>
+			</div>
+
+		</main>
+		<!-- FIM DA ÁREA DE TRIAGEM -->
+		<!-- INÍCIO DO FOOTER -->
+		<footer class="pt-4 my-md-0 pt-md-2 border-top">
+			<div class="row text-light">
+				<div class="col-md-4">
+					<hr class="light">
+					<img src="img/Icones/LogoVertical.png" height="120px">
+					<hr class="light">
+					<p>0800 4020-8922 / 11 4020-8922</p>
+					<p>contato@conexao360.com.br</p>
+					<p>Rua Padre Marchetti, 240</p>
+					<p>São Paulo - SP, 04262-100</p>
+				</div>
+				<div class="col-md-4">
+					<hr class="light">
+					<img src="img/Icones/Relogio.png" height="95px">
+					<h5>Horários</h5>
+					<hr class="light">
+					<p>Segunda-Sexta: 08hs - 18hs</p>
+					<p>Sábados e Domingos: 08hs - 14hs</p>
+					<p>Feriados: 08hs - 12hs</p>
+				</div>
+				<div class="col-md-4">
+					<hr class="light">
+					<img src="img/Icones/Contato.png" height="95px">
+					<h5>Contato</h5>
+					<hr class="light">
+					<p>daniellessi@gmail.com</p>
+					<p>dv.lfrancaa@outlook.com</p>
+					<p>gabrieldasilvasantos1997@hotmail.com</p>
+				</div>
+				<div class="col-12">
+					<hr class="light" />
+					<h5>&copy; SQUAD 034</h5>
+				</div>
+			</div>
+		</footer>
+		<!-- FIM DO FOOTER -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+			integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+			integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+			crossorigin="anonymous"></script>
+	</div>
+</body>
+
+</html>

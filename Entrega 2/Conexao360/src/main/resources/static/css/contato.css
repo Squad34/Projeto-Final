@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+/*---------------------------------------------------------------*/
+/* Texto */
+/*---------------------------------------------------------------*/
+html,body {
+    font-family: 'poppins', sans-serif;
+}
+/*---------------------------------------------------------------*/
+/* Cores */
+/*---------------------------------------------------------------*/
+.navbar {
+    background-color: #227364;
+}
+
+.section{
+    background-color: #DCE8F2;
+}
+
+.contato, .card{
+    background-color: #FFFFFF;
+}
+
+footer{
+    background-color: #227364;
+}
+
+.card:hover{
+    background-color: #41F2E1;
+}
+
+.btn:hover {
+    background-color: #F55D3B;
+    border-color: #F55D3B;
+}
+
+/*---------------------------------------------------------------*/
+/* Formatação */
+/*---------------------------------------------------------------*/
+body {
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    
+}
+
+.section {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.contato {
+    border: solid 1px #adb5bd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
