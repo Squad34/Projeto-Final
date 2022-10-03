@@ -26,6 +26,7 @@ html,body {
 .btn{
     background-color: #3558C9;
     border-color: #3558C9;
+    
 }
 
 footer{
@@ -93,7 +94,6 @@ footer {
 		box-sizing: border-box;
 		
 		padding: 3px;
-		background:white;
 		font-size: 13px;
 	}
 }
@@ -101,7 +101,6 @@ footer {
 	.Jumbotron{
 		box-sizing: border-box;
 		padding:2px;
-		background:white;
 		font-size: 16px;
 	}
 	.table {
@@ -125,6 +124,12 @@ footer {
 		width:100%;
 		text-align:right;
 		position:relative;
+		word-wrap: break-word;
+		text-indent: 250px;
+	}
+	
+	.btn{
+		text-indent: 1px;
 	}
 	
 	.table td::before{
@@ -134,5 +139,6 @@ footer {
 		width: 100%;
 		font-weight: bold;
 		text-align: left;
+		text-indent: 1px;
 	}
 }
